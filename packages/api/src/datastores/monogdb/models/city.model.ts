@@ -7,13 +7,9 @@ const citySchema = new Schema<City>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-// Text index for search performance
 citySchema.index({ name: "text" }, { name: "name_text_index" });
-
-// Regular index for exact matches
-citySchema.index({ name: 1 });
 
 export const CityModel = model<City>("City", citySchema);

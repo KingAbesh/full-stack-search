@@ -8,10 +8,9 @@ const countrySchema = new Schema<Country>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-// Text index for search performance
 countrySchema.index(
   {
     country: "text",
@@ -23,11 +22,7 @@ countrySchema.index(
       countryisocode: 5,
     },
     name: "search_index",
-  }
+  },
 );
-
-// Regular indexes for common queries
-countrySchema.index({ countryisocode: 1 }, { unique: true });
-countrySchema.index({ country: 1 }, { unique: true });
 
 export const CountryModel = model<Country>("Country", countrySchema);

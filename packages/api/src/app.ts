@@ -55,7 +55,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Add request logging middleware:w
-
 app.use(requestLogger);
 
 // Health check endpoint
@@ -85,19 +84,6 @@ app.use("*", (_: express.Request, res: express.Response) => {
 
 // Add error handler middleware
 app.use(errorHandler);
-
-process.on(
-  "unhandledRejection",
-  (reason: unknown, promise: Promise<unknown>) => {
-    logger.error("Unhandled Rejection at:", promise, "reason:", reason);
-    process.exit(1);
-  }
-);
-
-process.on("uncaughtException", (error: Error) => {
-  logger.error("Uncaught Exception thrown", error);
-  process.exit(1);
-});
 
 process.on("SIGINT", async () => {
   const mongodb = MongoDBConnection.getInstance();
