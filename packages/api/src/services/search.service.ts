@@ -20,43 +20,17 @@ const createSearchStages = (searchPattern: RegExp): PipelineStage[] => [
     $match: {
       $or: [
         { hotel_name: { $regex: searchPattern } },
-        { city: { $regex: searchPattern } },
         { country: { $regex: searchPattern } },
       ],
     },
   },
   {
-    $lookup: {
-      from: "cities",
-      localField: "city",
-      foreignField: "name",
-      as: "city_info",
-    },
-  },
-  {
-    $lookup: {
-      from: "countries",
-      localField: "country",
-      foreignField: "country",
-      as: "country_info",
-    },
-  },
-  {
     $addFields: {
-      city_info: { $arrayElemAt: ["$city_info", 0] },
-      country_info: { $arrayElemAt: ["$country_info", 0] },
       score: {
         $add: [
           {
             $cond: [
               { $regexMatch: { input: "$hotel_name", regex: searchPattern } },
-              3,
-              0,
-            ],
-          },
-          {
-            $cond: [
-              { $regexMatch: { input: "$city", regex: searchPattern } },
               2,
               0,
             ],
@@ -87,7 +61,7 @@ const createCitySearchStages = (searchPattern: RegExp): PipelineStage[] => [
       score: {
         $cond: [
           { $regexMatch: { input: "$name", regex: searchPattern } },
-          3,
+          1,
           0,
         ],
       },
@@ -113,7 +87,7 @@ const createCountrySearchStages = (searchPattern: RegExp): PipelineStage[] => [
           {
             $cond: [
               { $regexMatch: { input: "$country", regex: searchPattern } },
-              3,
+              2,
               0,
             ],
           },
