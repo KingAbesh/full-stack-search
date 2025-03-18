@@ -14,6 +14,7 @@ vi.mock("@/api/client", () => ({
 }));
 
 const mockSearchResponse = {
+  query: "test",
   hotels: [
     {
       _id: "1",

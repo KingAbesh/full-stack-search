@@ -24,7 +24,6 @@ Search for hotels, cities, and countries.
 
 ```json
 {
-  "success": true,
   "message": "Search completed successfully",
   "data": {
     "hotels": [...],
@@ -50,7 +49,6 @@ Get details of a specific hotel.
 
 ```json
 {
-  "success": true,
   "message": "Hotel fetched successfully",
   "data": {
     "chain_name": "string",
@@ -83,7 +81,6 @@ Get details of a specific city.
 
 ```json
 {
-  "success": true,
   "message": "City fetched successfully",
   "data": {
     "name": "string"
@@ -107,7 +104,6 @@ Get details of a specific country.
 
 ```json
 {
-  "success": true,
   "message": "Country fetched successfully",
   "data": {
     "country": "string",
@@ -124,12 +120,9 @@ All endpoints may return the following error responses:
 
 ```json
 {
-  "success": false,
   "message": "Validation error message",
-  "error": {
-    "code": "VALIDATION_ERROR",
-    "details": [...]
-  }
+  "code": "VALIDATION_ERROR",
+  "errors": [...]
 }
 ```
 
@@ -137,11 +130,8 @@ All endpoints may return the following error responses:
 
 ```json
 {
-  "success": false,
   "message": "Entity not found",
-  "error": {
-    "code": "NOT_FOUND"
-  }
+  "code": "NOT_FOUND"
 }
 ```
 
@@ -149,10 +139,7 @@ All endpoints may return the following error responses:
 
 ```json
 {
-  "success": false,
   "message": "Internal server error",
-  "error": {
-    "code": "INTERNAL_SERVER_ERROR"
-  }
+  "code": "UNABLE_TO_PROCESS_REQUEST"
 }
 ```
