@@ -1,13 +1,29 @@
 {
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "display": "Default",
   "compilerOptions": {
-    "target": "ES2017",
-    "module": "ES2022",
-    "moduleResolution": "Bundler",
+    "composite": false,
+    "declaration": true,
+    "declarationMap": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "inlineSources": false,
+    "isolatedModules": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveWatchOutput": true,
     "skipLibCheck": true,
-    "baseUrl": ".",
+    "strict": true,
+    "target": "ESNext",
+    "allowSyntheticDefaultImports": true,
+    "rootDir": ".",
     "outDir": "./dist",
-  }
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false
+  },
+  "include": ["src", "__e2e__", "index.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts", "dist"]
 }
